@@ -1,0 +1,14 @@
+<launch>
+
+<!-- Connessione con eventuali nodi basati su ESP32 o NODEMCU -->
+
+<!-- se non va chiamato dal launch,  eseguilo manualmente con : rosrun rosserial_python nodes/message_info_service.py-->
+
+<!--  http://wiki.ros.org/rosserial_server  -->
+
+
+  <node  ns="esp32" pkg="rosserial_server" type="socket_node" name="rosserial_server" />
+  <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+</launch>
+
+ <!--se serve riavviarlo, esegui prima:   rosnode kill ros_message_info-->

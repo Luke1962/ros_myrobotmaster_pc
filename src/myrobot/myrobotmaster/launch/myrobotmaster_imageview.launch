@@ -1,0 +1,10 @@
+<!-- Run the dnn_detect node -->
+<launch> 
+
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/dnn_images"/>
+        <!--<remap from="image" to="/raspicam_compressed"/>-->
+        <param name="autosize" value="true" />
+    </node>
+ 
+</launch>

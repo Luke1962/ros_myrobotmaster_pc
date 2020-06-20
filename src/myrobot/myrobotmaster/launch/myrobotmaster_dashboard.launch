@@ -1,0 +1,7 @@
+<launch>
+
+    <node name="dashboard" pkg="rm_dashboard" type="dashboard.py" output="screen">
+
+
+	</node>
+</launch>

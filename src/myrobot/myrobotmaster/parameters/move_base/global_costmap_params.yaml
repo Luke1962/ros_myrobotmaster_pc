@@ -1,0 +1,10 @@
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_link
+  publish_voxel_map: true
+  update_frequency: 0.5
+  publish_frequency: 0.5
+  static_map: true
+  rolling_window: false
+  transform_tolerance: 50 # was 50
+  use_sim_time: false

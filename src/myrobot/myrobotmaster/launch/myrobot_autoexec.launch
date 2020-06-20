@@ -1,0 +1,21 @@
+<launch>
+	<!--
+        Launch file da chiamare dal batch di avvio 
+        Lancia tutti i nodi
+	-->
+	
+<!-- tf fisse -->
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster__navstack.launch"/>
+
+
+
+ 	<include file="$(find myrobotmaster)/launch/myrobotmaster_dashboard.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_imgrepublish_robot_usbcam.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_dialogflow.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_rviz.launch"/>
+
+ 	<include file="$(find myrobotmaster)/launch/myrobotmaster_facerecognition.launch"/>
+
+
+</launch>

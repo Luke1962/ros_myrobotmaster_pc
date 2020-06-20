@@ -1,0 +1,29 @@
+max_obstacle_height: 1.0 
+obstacle_range: 3.0 #dist. massima alla quale riconosce la presenza di un ostacolo (marking)
+raytrace_range: 5.0 #dist massima alla quale fa in clearing della costmap
+robot_radius: 0.22
+#footprint: [[0.2, 0.0], [0.0, 0.2], [0.0, -0.2], [-0.2, 0.0]]
+footprint_padding: 0.03
+
+inflation_radius: 0.20  #0.28 max. distance from an obstacle at which costs are incurred for planning path
+cost_scaling_factor: 10  # 10exponential rate at which the obstacle cost drops off (default: 10)
+track_unknown_space: true. #If false, each pixel has one of 2 states: lethal obstacle or free. If true, each pixel has one of 3 states: lethal obstacle, free, or unknown
+map_type: costmap
+transform_tolerance: 5 # seconds
+
+
+observation_sources: laser_scan_sensor
+
+# http://wiki.ros.org/navigation/Troubleshooting#Missing_Obstacles_in_Costmap2D
+# Note taht the max_obstacle_height is very important too!
+laser_scan_sensor: {
+ sensor_frame: scan_link, 
+ data_type: LaserScan, 
+ topic: scan, 
+ marking: true, 
+ clearing: true,
+ min_obstacle_height: 0.0, 
+ max_obstacle_height: 1
+ }
+
+ 

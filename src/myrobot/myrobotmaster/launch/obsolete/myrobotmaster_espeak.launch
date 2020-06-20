@@ -1,0 +1,30 @@
+<launch>
+<!-- 
+ <node ns="PC" name="speech_node" pkg="rm_speech" type="rm_speech_node">
+  	<remap from="/rp/state_externalization/vocal_message" to="/chatter"/>
+</node>
+
+test con 
+espeak -vit -s 150 -p 50 -w /tmp/temp.wav "ochei vado a destra, sinistra avanti indietro" && aplay /tmp/temp.wav
+
+-->
+    
+    
+  <node name="espeak_node" pkg="espeak_ros" type="espeak_node" respawn="false" output="screen">
+        
+        <param name="voice" value="8" />
+        <param name="dialect" value="8" />
+        <param name="rate" value="157" />
+        <param name="volume" value="100" />
+        <param name="pitch" value="50" />
+        <param name="punctuation" value="0" />
+        <param name="capitals" value="0" />
+        <param name="wordgap" value="10" />
+        <param name="wordgap" value="10" />
+        <param name="gender" value="1" />
+        <param name="age" value="30" />
+      
+
+    </node>
+  
+</launch>

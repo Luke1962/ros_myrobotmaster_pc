@@ -1,0 +1,52 @@
+<launch>
+
+  <master auto="start"/>
+<!--  
+  rosrun gazebo_ros spawn_model -file /home/luca/ros_catkin_ws/src/myrobotmaster/urdf/myrobot.urdf -urdf -x 0 -y 0 -z 1 -model myrobot
+
+Dal libro Mastering ROS For obotic Programming.pdf pag 106
+-->
+<arg name="paused" default="false"/>
+<arg name="use_sim_time" default="true"/>
+<arg name="gui" default="true"/>
+<arg name="headless" default="false"/>
+<arg name="debug" default="false"/>
+ 
+<param name="/use_sim_time" value="true" />  
+
+<!-- urdf xml robot description loaded on the Parameter Server-->
+<!--<param name="robot_description" command="$(find xacro)/xacro.py '$(find mastering_ros_robot_description_pkg)/urdf/diff_wheeled_robot.xacro'" />-->
+<param name="robot_description" command="$(find xacro)/xacro.py '$(find myrobotmaster)/urdf/myrobot.xacro'" />
++
+
+<!-- Spawn a robot into Gazebo 
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -z 0.1 -model robot_model" respawn="false" output="screen"/>   -->
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file /home/luca/ros/src/myrobot/myrobotmaster/urdf/myrobot.xacro -urdf -z 1 -model robot_description" />
+ 
+
+<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+<!--<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+respawn="false" output="screen"
+args="-urdf -model diff_wheeled_robot -param robot_description"/>
+-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(find myrobotmaster)/worlds/myworld.world"/>
+  </include>
+
+
+
+<!-- start gazebo with boxes  
+
+   
+  <node name="gazebo" pkg="gazebo" type="gazebo" args="-u $(find turtlebot_gazebo_tutorial)/test.world" respawn="true" output="screen"/>
+
+  <node name="gazebo_gui" pkg="gazebo" type="gui" />
+--> 
+
+
+
+
+</launch>

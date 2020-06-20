@@ -1,0 +1,160 @@
+<!-- Launch file for the rrt-detector and the assigner -->
+
+
+<launch>
+  <!--simple explorer m-explore -->
+    <!-- esplora costmap
+    <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
+      <param name="robot_base_frame" value="base_link"/>
+      <param name="costmap_topic" value="move_base/global_costmap/costmap"/>
+      <param name="costmap_updates_topic" value="move_base/global_costmap/costmap_updates"/>
+      <param name="visualize" value="true"/>
+      <param name="planner_frequency" value="0.33"/>
+      <param name="progress_timeout" value="30.0"/>
+      <param name="potential_scale" value="3.0"/>
+      <param name="orientation_scale" value="0.0"/>
+      <param name="gain_scale" value="1.0"/>
+      <param name="transform_tolerance" value="0.3"/>
+      <param name="min_frontier_size" value="0.5"/>
+    </node>
+    -->
+    <!--esplora la mappa-->
+    <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
+      <param name="robot_base_frame" value="base_link"/>
+      <param name="costmap_topic" value="/map"/>
+      <param name="costmap_updates_topic" value="map_updates"/>
+      <param name="visualize" value="true"/>
+      <param name="planner_frequency" value="0.33"/>
+      <param name="progress_timeout" value="30.0"/>
+      <param name="potential_scale" value="3.0"/>
+      <param name="orientation_scale" value="0.0"/>
+      <param name="gain_scale" value="1.0"/>
+      <param name="transform_tolerance" value="0.3"/>
+      <param name="min_frontier_size" value="0.75"/>
+    </node>
+
+
+<!--
+
+rrt explorer
+
+
+  <arg name="namespace" value=""/>
+
+ 	<remap from="/detected_points" to="/move_base_simple/goal"/> 
+
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
+    <param name="footprint_padding" value="0.01" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="3.0" />
+    <param name="oscillation_timeout" value="30.0" />
+    <param name="oscillation_distance" value="0.5" />
+    <param name="planner_patience" value="1" />
+    <param name="controller_patience" value="1" /> 
+    <remap from="cmd_vel" to="mobile_base/commands/velocity"/>
+    <param name="recovery_behavior_enabled" value="false" />
+    <rosparam file="$(find rrt_exploration_tutorials)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find rrt_exploration_tutorials)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find rrt_exploration_tutorials)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rrt_exploration_tutorials)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rrt_exploration_tutorials)/param/base_local_planner_params.yaml" command="load" />  
+    <param name="global_costmap/global_frame" value="map"/>
+    <param name="global_costmap/robot_base_frame" value="base_link"/>
+    <param name="global_costmap/laser_scan_sensor/sensor_frame" value="base_laser_link"/>
+    <param name="global_costmap/laser_scan_sensor/topic" value="/base_scan"/>    
+    <param name="local_costmap/global_frame" value="odom"/>
+    <param name="local_costmap/robot_base_frame" value="base_link"/>
+    <param name="local_costmap/laser_scan_sensor/sensor_frame" value="base_laser_link"/>
+    <param name="local_costmap/laser_scan_sensor/topic" value="/base_scan"/>
+    <param name="local_costmap/obstacle_layer/laser_scan_sensor/topic" value="/base_scan"/>
+  </node>
+
+
+<arg name="eta" value="1.0"/>
+<arg name="Geta" value="15.0"/>
+
+<remap from="cmd_vel" to="mobile_base/commands/velocity"/>
+   
+
+  <node pkg="rrt_exploration" type="global_rrt_detector" name="global_detector" output="screen">
+  <param name="eta" value="$(arg Geta)"/>
+  <param name="map_topic" value="/map"/>
+  </node>
+  
+  <node pkg="rrt_exploration" type="local_rrt_detector" name="local_detector" output="screen">
+  <param name="eta" value="$(arg eta)"/>
+  <param name="map_topic" value="/map"/>
+  <param name="robot_frame" value="base_link"/>
+  </node>
+ 
+  
+  <node pkg="rrt_exploration" type="filter.py" name="filter" output="screen">
+  <param name="map_topic" value="map"/>
+  <param name="info_radius" value="1"/> 
+  <param name="costmap_clearing_threshold" value="70"/> 
+  <param name="goals_topic" value="/explorer_goals"/>
+  <param name="namespace_init_count" value="1"/>
+  <param name="namespace" value=""/> 
+  <param name="n_robots" value="1"/>
+  <param name="rate" value="30"/>
+  </node>
+  
+  <node pkg="rrt_exploration" type="assigner.py" name="assigner" output="screen">
+  <param name="map_topic" value="/map"/>
+  <param name="global_frame" value="map"/>
+  <param name="info_radius" value="1"/> 
+  <param name="info_multiplier" value="3.0"/> 
+  <param name="hysteresis_radius" value="3.0"/> 
+  <param name="hysteresis_gain" value="2.0"/> 
+  <param name="frontiers_topic" value="/filtered_points"/> 
+  <param name="n_robots" value="1"/>
+  <param name="namespace_init_count" value="1"/>
+  <param name="namespace" value="explorer"/>
+  <param name="delay_after_assignement" value="0.5"/>
+  <param name="rate" value="30"/>
+  </node>
+
+
+
+
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" >
+      <remap from="scan" to="base_scan"/>
+      <param name="map_frame" value="map"/>
+      <param name="odom_frame" value="odom"/>
+      <param name="base_frame" value="base_link"/>
+      <param name="map_update_interval" value="2.0"/>
+      <param name="maxUrange" value="50.0"/>
+      <param name="maxRange" value="50.0"/>
+      <param name="sigma" value="0.05"/>
+      <param name="kernelSize" value="1"/>
+      <param name="lstep" value="0.05"/>
+      <param name="astep" value="0.05"/>
+      <param name="iterations" value="5"/>
+      <param name="lsigma" value="0.075"/>
+      <param name="ogain" value="3.0"/>
+      <param name="lskip" value="0"/>
+      <param name="srr" value="0.01"/>
+      <param name="srt" value="0.02"/>
+      <param name="str" value="0.01"/>
+      <param name="stt" value="0.02"/>
+      <param name="linearUpdate" value="0.01"/>
+      <param name="angularUpdate" value="0.01"/>
+      <param name="temporalUpdate" value="0.1"/>
+      <param name="resampleThreshold" value="0.5"/>
+      <param name="particles" value="30"/>
+      <param name="xmin" value="-5.0"/>
+      <param name="ymin" value="-5.0"/>
+      <param name="xmax" value="5.0"/>
+      <param name="ymax" value="5.0"/>
+      <param name="delta" value="0.1"/>
+      <param name="llsamplerange" value="0.01"/>
+      <param name="llsamplestep" value="0.01"/>
+      <param name="lasamplerange" value="0.005"/>
+      <param name="lasamplestep" value="0.005"/>
+      <param name="minimumScore" value="0.005"/>
+    </node>
+-->
+
+
+</launch>

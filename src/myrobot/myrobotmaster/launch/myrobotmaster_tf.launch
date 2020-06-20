@@ -1,0 +1,31 @@
+<launch>
+<!-- load robot model-->
+	<param name="robot_description" textfile="$(find myrobotmaster)/urdf/myrobot.urdf" />
+
+
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    
+    <!--
+         static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms     
+    -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="wrld2map_broadcaster"  args="0 0 0 0 0 0 1 world map" />
+	
+	
+	<!-- tf da map a odom ; faccio coincidere il riferimento di odometry con la mappa
+	AMCL tries to match the laser scans to the map thus detecting if there is any drift occurring in the pose estimate based on the odometry (dead reckoning).
+	 This drift is then compensated by publishing a transform between the map frame and the odom frame
+	 such that at the end the transform map->base_frame corresponds to the real pose of the robot in the world. 
+	ELIMINA COMMENTO SE NON USI AMCL
+	<node pkg="tf2_ros" type="static_transform_publisher" name="map2odom_broadcaster"  args="0 0 0 0 0 0 1 map odom" /> 
+	 -->
+
+
+
+
+
+
+
+
+</launch>

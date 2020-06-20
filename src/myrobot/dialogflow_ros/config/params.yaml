@@ -1,0 +1,18 @@
+results_topic: "/dialogflow_client/results"
+requests_topic: "/dialogflow_client/requests"
+project_id: "robot-15de1"
+
+play_google_audio: true
+play_local_audio: true
+
+use_snowboy: true
+snowboy_sensitivity: 0.5
+model_path: "/home/luca/ros/src/myrobot/dialogflow_ros/scripts/snowboy/resources/OK_Robot.pmdl"
+#model_path: "/home/luca/ros/src/myrobot/dialogflow_ros/scripts/snowboy/resources/snowboy.umdl"
+
+use_audio_server: true
+server_name: "192.168.43.219"
+
+port: 4444
+
+debug: true

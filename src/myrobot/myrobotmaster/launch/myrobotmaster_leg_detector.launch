@@ -1,0 +1,7 @@
+<launch>	
+<!--<remap from="/base_scan" to="/scan"/>-->
+  <node pkg="leg_detector" type="leg_detector" name="leg_detector" args="scan:=/scan $(find leg_detector)/config/trained_leg_detector.yaml" output="screen">
+  
+  </node>
+</launch>
+

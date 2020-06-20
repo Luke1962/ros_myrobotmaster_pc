@@ -1,0 +1,9 @@
+image: map5.pgm
+resolution: 0.01
+origin: [-6.0, -7.5, 0.0]
+orientation: [0.0, 0.0, 1.57]
+occupied_thresh: 0.650
+free_thresh: 0.196
+negate: 0
+width:  15.3
+height: 14.9

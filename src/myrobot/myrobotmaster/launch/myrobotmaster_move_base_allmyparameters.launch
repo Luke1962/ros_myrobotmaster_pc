@@ -1,0 +1,13 @@
+<launch>
+ <!--richiede che sia installato il pacchetto ros-melodic-navigation con apt get install -->
+  <master auto="start"/>
+<!--
+ <rosparam file="$(find simple_costmap_configuration)/params/minimal.yaml" command="load" ns="/costmap_node/costmap" />
+-->
+  <!--- Run Move base -->
+  <node    pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find myrobotmaster)/parameters/move_base_allmyparameters.yaml" command="load" ns="global_costmap" />
+    <param name="controller_frequency" value="8.0" />
+    <remap from="cmd_vel"  to="/cmd_vel"/>
+  </node>
+</launch>

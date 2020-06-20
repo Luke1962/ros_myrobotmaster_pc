@@ -1,0 +1,51 @@
+<launch>
+
+
+  <arg name="odom_topic" default="odom" />
+
+  <!-- global -->
+  <arg name="carrot" default="True" />
+  <arg name="navfn"  default="False" />
+  <arg name="gp"     default="False" />
+
+  
+  <!-- map -->
+  <arg name="map"  default="False" />
+
+
+  <node pkg="move_base" type="move_base" name="move_base" respawn="false" output="screen">
+
+    <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    
+    <!-- Move base -->
+    <rosparam file="$(find upc_mrn)/config/navigation/move_base_params.yaml" command="load" />
+
+    <!-- LOCAL PLANNER -->
+    <!-- BASE -->
+
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/base_local_planner_params.yaml" command="load" />
+
+    <!-- GLOBAL PLANNER -->
+    <!-- CARROT --> 
+    <param if="$(arg carrot)" name="base_global_planner" value="carrot_planner/CarrotPlanner"  />
+    <!-- NAVFN --> 
+    <param if="$(arg navfn)" name="base_global_planner" value="navfn/NavfnROS"  />
+
+    <!-- COSTMAPS -->
+    <!-- Local costmap configs: common + local -->
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/local_costmap_params.yaml" command="load" />
+        
+    <!-- Global costmap config: common + global -->
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam if="$(arg map)" file="$(find myrobotmaster)/parameters/move_base/global_costmap_params.yaml" command="load" />
+    <rosparam unless="$(arg map)" file="$(find myrobotmaster)/parameters/move_base/global_costmap_params.yaml" command="load" />
+
+    
+
+
+  </node>
+</launch>
+
+

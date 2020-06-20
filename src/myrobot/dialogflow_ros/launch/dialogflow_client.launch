@@ -1,0 +1,10 @@
+<launch>
+    <rosparam command="load" file="$(find dialogflow_ros)/config/params.yaml" ns="/dialogflow_client"/>
+ 
+    <!--<node name="mic_client" pkg="dialogflow_ros" type="mic_client.py" output="screen"/>
+    -->
+    <node name="dialogflow_client" pkg="dialogflow_ros" type="dialogflow_client.py" output="screen">
+	<!--<remap from="dialogflow_client/requests/string_msg" to="/dialogflow_text" />-->
+	<!--<remap from="dialogflow_client/requests/string_msg" to="/voice" />-->
+	</node>
+</launch>

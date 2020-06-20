@@ -1,0 +1,32 @@
+<launch>
+
+<!-- Connessione con eventuali nodi basati su ESP32 o NODEMCU -->
+
+<!--  http://wiki.ros.org/rosserial_server  -->
+
+<!--  
+<node pkg="rosserial_server" type="serial_node" name="rosserial_server">
+    <rosparam>
+      port:  /dev/ttyUSB0
+      require:
+        publishers: [ odom, encoder_right,encoder_left]
+        subscribers: [  ]
+    </rosparam>
+  </node>
+ 
+ -->
+
+	<node ns="robot"  name="socket_node_wifi" pkg="rosserial_server" type="socket_node" launch-prefix="sudo cmd -E PYTHONPATH=$(env PYTHONPATH)" output="screen">
+ 		<param name="port" value="tcp" />
+	  </node>
+
+
+
+
+
+	<node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+
+
+
+
+</launch>

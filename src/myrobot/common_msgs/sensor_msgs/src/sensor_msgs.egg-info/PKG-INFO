@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: sensor-msgs
+Version: 1.12.7
+Summary: This package defines messages for commonly used sensors, including
+    cameras and scanning laser rangefinders.
+Home-page: http://ros.org/wiki/sensor_msgs
+Author: 
+Maintainer: Tully Foote
+Maintainer-email: tfoote@osrfoundation.org
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN

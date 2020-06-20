@@ -1,0 +1,30 @@
+
+DWAPlannerROS:
+# http://wiki.ros.org/dwa_local_planner
+# versione con pochi parametri modificati rispetto al default
+
+# Robot Configuration Parameters - Kobuki
+  max_vel_x: 0.5  # 0.55
+  min_vel_x: -0.5 #The minimum x velocity for the robot in m/s, negative for backwards motion.
+  #max_rot_vel: 1.14  # choose slightly less than the base's capability
+  max_vel_theta: 1.0  # usato da recovery behaviour come velocità massima di rotazione
+  min_vel_theta: 0.8
+  max_vel_y: 0.0  # diff drive robot
+  min_vel_y: 0.0  # diff drive robot
+  #min_in_place_vel_theta: 0.5
+
+ 
+ 
+# Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.05  # 0.05
+  xy_goal_tolerance: 0.034906585  # 0.10
+  # latch_xy_goal_tolerance: false
+
+# Debugging
+  publish_traj_pc : true
+  publish_cost_grid_pc: true
+  global_frame_id: odom  # was odom
+
+
+# Differential-drive robot configuration - necessary?
+  holonomic_robot: false

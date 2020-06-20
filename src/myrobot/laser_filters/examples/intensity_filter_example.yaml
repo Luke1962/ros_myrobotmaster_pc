@@ -1,0 +1,7 @@
+scan_filter_chain:
+- name: intensity
+  type: laser_filters/LaserScanIntensityFilter
+  params:
+    lower_threshold: 6000
+    upper_threshold: 12000
+    disp_histogram: 0

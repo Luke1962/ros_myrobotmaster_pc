@@ -1,0 +1,28 @@
+<launch>
+
+ 
+
+  <!-- <master auto="start"/> -->
+   <!-- rimappa il topic al quale in nodo enc2odom è sottoscritto di default -->
+	  <remap from="encoders" to="/encoders"/> 
+
+<!--0.355  facendo un giro vero , odom riporta poco di più >> va aumentato leggermente il dato di distanza tra le ruote -->
+    <!--<param name="enc2mm" value="0.064"/>  -->
+    <!-- value="0.066758844" 1m calcolato come odom in realtà corrisponde a 0.97 -->
+    <!--<param name="enc2mm" value="0.0645"/>  1m percorso >> Odom 1.09 -->
+    <!--<param name="enc2mm" value="0.063"/>   1m percorso >> Odom quasi 1m,-->
+
+<!--ricordati che se metti un namespace devi ricompilare il nodo dopo aver cambiato  thisNs = ""-->
+  <node     name="enc2odom" pkg="enc2odom" type="enc2odom_node"  output="screen">
+     <param name="rate" value="30"/>
+    <param name="dbg_throttle_odom_interval" value="5.0"/>  
+    <param name="dbg_throttle_enc_interval" value="10.0"/>  
+    <param name="enc2mm" value="0.06676"/>      
+   <!-- <param name="enc2mm" value="0.078"/>-->  
+    
+    <param name="wheeldistance" value="0.36"/>  
+    <param name="queue_size" value="10"/>
+
+  </node>
+</launch>
+

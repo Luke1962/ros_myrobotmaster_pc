@@ -1,0 +1,18 @@
+<launch>
+
+	<!--<node name="republish" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/raspicam/image_raw compressed out:=/raspicam" />-->
+<!--	<node name="republish" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/raspicam/image_raw compressed out:=usb_cam/image_raw" />
+-->	
+
+<!--republish per Image View su android-->
+<node name="republis2handroid" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/camera/image_raw compressed out:=/usb_cam/image_raw" />
+
+<!--republish per Robot control su android-->
+<node name="republish2android2" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/camera/image_raw compressed out:=/image_raw" />
+
+<!--republish per nodo Face Recognition
+<node name="republish2facerecognition" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/camera/image_raw raw out:=/camera/image_raw" />
+-->
+	<!--  <remap from="" to=""/> -->
+</launch>
+

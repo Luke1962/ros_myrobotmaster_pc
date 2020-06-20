@@ -1,0 +1,8 @@
+<launch>
+
+
+<!-- load robot model -->
+	<arg name="robot_description" default="$(find myrobotmaster)/urdf/myrobot.urdf"/>
+	<param name="robot_description" textfile="$(find myrobotmaster)/urdf/myrobot.urdf" />
+
+</launch>

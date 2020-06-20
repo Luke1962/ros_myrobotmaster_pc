@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="robot_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  
+  
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<cylinder length="0.01" radius="0.2"/>
+			</geometry>
+
+			<material name="none">
+				<color rgba="0.1 0 0 0.1"/>
+			</material>
+		</visual>
+		
+        <collision>
+             <geometry>
+                <cylinder length="0.01" radius="0.2"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        
+        
+	</link>
+
+
+	<link name="bottom_link">
+	   <visual>
+	    <geometry>
+	     <cylinder length="0.01" radius="0.2"/>
+	    </geometry>
+	    <material name="alluminio">
+	      <color rgba="0.6 0.6 0.8 1"/>
+	    </material>
+	   </visual>
+	   
+		
+        <collision>
+             <geometry>
+                <cylinder length="0.01" radius="0.2"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        
+	 </link>
+	 
+	<joint name="bottom_joint" type="fixed"> 
+		<parent link="base_link"/> 
+		<child link="bottom_link"/> 
+		<origin rpy="0 0 0" xyz="0 0 0.09"/> 
+	</joint>
+
+
+  <link name="battery_link"> 
+    <visual>
+		<geometry>
+        	<box size="0.09 0.14 0.06"/>
+      	</geometry>
+      	<material name="black">       
+		<color rgba="0.5 0.5 0.5 0.3"/> 
+      	</material> 
+    </visual> 
+		
+        <collision>
+             <geometry>
+        	     <box size="0.09 0.14 0.06"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+  </link>
+  <joint name="battery_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="battery_link"/> 
+    <origin rpy="0 0 0" xyz="-0.12 0 0.03"/> 
+  </joint>
+
+
+	<link name="top_link">
+		<visual>
+		<geometry>
+		<cylinder length="0.01" radius="0.2"/>
+		</geometry>
+
+		<material name="plexiglass">
+		<color rgba="0.8 0.8 0.8 0.8"/>
+		</material>
+		</visual>
+				
+        <collision>
+             <geometry>
+		          <cylinder length="0.01" radius="0.2"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        
+	</link>
+	<joint name="top_joint" type="fixed"> 
+		<parent link="bottom_link"/> 
+		<child link="top_link"/> 
+		<origin rpy="0 0 0" xyz="0 0 0.15"/> 
+	</joint>
+
+<link name="columnFR_link">
+   <visual>
+    <geometry>
+     <box size="0.02 0.01 0.15"/>
+    </geometry> 
+    <material name="alluminium">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+   </visual>
+   				
+        <collision>
+             <geometry>
+                     <box size="0.02 0.01 0.15"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        
+ </link>
+   <joint name="columnFR_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="columnFR_link"/> 
+    <origin rpy="0 0 0" xyz="0.1 -0.1 0.075"/> 
+  </joint>
+
+
+<link name="columnFL_link">
+   <visual>
+    <geometry>
+     <box size="0.02 0.01 0.15"/>
+    </geometry>
+    <material name="alluminium">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+   </visual>
+        <collision>
+             <geometry>
+                     <box size="0.02 0.01 0.15"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+   
+ </link>
+  <joint name="columnFL_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="columnFL_link"/> 
+    <origin rpy="0 0 0" xyz="0.1 0.1 0.075"/> 
+  </joint>
+
+ 
+<link name="columnBR_link">
+   <visual>
+    <geometry>
+     <box size="0.02 0.01 0.15"/>
+    </geometry>
+
+    <material name="alluminium">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+   </visual>
+           <collision>
+             <geometry>
+                     <box size="0.02 0.01 0.15"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+</link>
+  <joint name="columnBR_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="columnBR_link"/> 
+    <origin rpy="0 0 0" xyz="-0.1 -0.1 0.075"/> 
+  </joint>
+
+<link name="columnBL_link">
+   <visual>
+    <geometry>
+     <box size="0.02 0.01 0.15"/>
+    </geometry>
+
+    <material name="alluminium">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+   </visual>
+           <collision>
+             <geometry>
+                     <box size="0.02 0.01 0.15"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+ </link>
+  <joint name="columnBL_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="columnBL_link"/> 
+    <origin rpy="0 0 0" xyz="-0.1 0.1 0.075"/> 
+  </joint>
+
+  <link name="right_wheel_link"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.014" radius="0.059"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0 0 0 1"/> 
+      </material> 
+    </visual> 
+            <collision>
+             <geometry>
+                 <cylinder length="0.014" radius="0.059"/> 
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+  </link>
+ <joint name="right_wheel_joint" type="continuous"> 
+    <axis xyz="0 0 1"/> 
+    <parent link="base_link"/> 
+    <child link="right_wheel_link"/> 
+    <origin rpy="1.5708 0 0" xyz="0 -0.2 0.059"/> 
+  </joint>
+
+ <link name="left_wheel_link"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.014" radius="0.059"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0 0 0 1"/> 
+      </material> 
+    </visual> 
+                <collision>
+             <geometry>
+                 <cylinder length="0.014" radius="0.059"/> 
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+
+  </link>
+  <joint name="left_wheel_joint" type="continuous"> 
+    <axis xyz="0 0 1"/> 
+    <parent link="base_link"/> 
+    <child link="left_wheel_link"/> 
+    <origin rpy="-1.5708 0 0" xyz="0 0.2 0.059"/> 
+  </joint>
+
+
+
+  <link name="caster_wheel_link"> 
+    <visual> 
+      <geometry> 
+        <sphere radius="0.03"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0.4 0.4 0.4 0.7"/> 
+      </material> 
+    </visual> 
+         <collision>
+             <geometry>
+                        <sphere radius="0.03"/> 
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+
+  </link>
+  <joint name="caster_wheel_joint" type="fixed"> 
+    <parent link="base_link"/> 
+    <child link="caster_wheel_link"/> 
+    <origin rpy="0 0 0" xyz="-0.15 0 0.03"/> 
+  </joint>
+
+
+
+  <link name="laser_link"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.08" radius="0.01"/>  
+      </geometry> 
+      <material name="green">       
+	<color rgba="0 1 0 1"/> 
+      </material> 
+    </visual> 
+
+         <collision>
+             <geometry>
+                        <cylinder length="0.08" radius="0.01"/> 
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+  </link>
+  <joint name="laser_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="laser_link"/> 
+    <origin rpy="0 1.5707 0" xyz="0.18 0 0.02"/> 
+  </joint>
+
+
+
+  <link name="raspicam_link"> 
+    <visual>
+	<geometry>
+        	<box size="0.03 0.04 0.04"/>
+      	</geometry>
+      	<material name="plastic_black">       
+		<color rgba="0.3 0.3 0.3 1"/> 
+      	</material> 
+    </visual> 
+             <collision>
+             <geometry>
+                        <box size="0.03 0.04 0.04"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        
+  </link>
+  <joint name="raspicam_joint" type="fixed"> 
+    <parent link="top_link"/> 
+    <child link="raspicam_link"/> 
+    <origin rpy="0 0 0" xyz="0.05 0.07 0.015"/> 
+  </joint>
+
+  <link name="scan_link"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.035" radius="0.035"/>  
+      </geometry> 
+      <material name="orange">       
+		<color rgba="1 0.5 0.0 1"/> 
+      </material> 
+    </visual> 
+       
+       
+        <collision>
+             <geometry>
+                         <cylinder length="0.035" radius="0.035"/>  
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+ 
+  </link>
+  <joint name="scan_joint" type="fixed"> 
+    <parent link="top_link"/> 
+    <child link="scan_link"/> 
+    <origin rpy="3.141592 0 -0.1" xyz="-0.08 -0.035 0.03"/> 
+  </joint>
+  
+  
+   <link name="imu_link"> 
+    <visual> 
+      <geometry> 
+		<box size="0.015 0.03 0.01"/>
+      </geometry> 
+      <material name="blue">       
+		<color rgba="0 0 1 1"/> 
+      </material> 
+    </visual> 
+
+
+         <collision>
+             <geometry>
+                         <box size="0.015 0.03 0.01"/>
+              </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.21" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>   
+    
+    
+    
+  </link>
+  <joint name="imu_joint" type="fixed"> 
+    <parent link="top_link"/> 
+    <child link="imu_link"/> 
+    <origin rpy="0 0 1.5708" xyz="0.0 0 -0.01"/> 
+  </joint>
+ 
+ 
+ 
+   
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,7 @@
+setup.py
+src/sensor_msgs/__init__.py
+src/sensor_msgs/point_cloud2.py
+src/sensor_msgs.egg-info/PKG-INFO
+src/sensor_msgs.egg-info/SOURCES.txt
+src/sensor_msgs.egg-info/dependency_links.txt
+src/sensor_msgs.egg-info/top_level.txt

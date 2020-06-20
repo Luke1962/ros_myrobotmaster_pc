@@ -1,0 +1,55 @@
+
+controller_frequency: 1.0 #Hz freq. d'invio di cmd_vel'
+TrajectoryPlannerROS:
+  max_vel_x: 0.18 #0.45
+  min_vel_x: 0.06 #0.1 
+  acc_lim_x: 0.1  #was 2.5
+
+  acc_lim_y: 0
+
+
+  
+  min_vel_theta: -1.0 #-1.0
+  max_vel_theta: 1.0  #1.0
+  min_in_place_rotational_vel: 0.36 #al di sotto non ruota
+  min_in_place_vel_theta: 0.4
+  max_rotational_vel: 1.5
+  
+  
+  acc_lim_theta: 0.50 #was 1.2
+  
+
+  holonomic_robot: false
+  meter_scoring: true
+  xy_goal_tolerance: 0.2
+
+  #-----------------------------------
+
+  
+  escape_vel: -0.07
+  acc_lim_th: 0.2 #was 0.8
+  
+  yaw_goal_tolerance: 0.16  #0.087 # about 5 degrees
+  goal_distance_bias: 0.6
+  path_distance_bias: 0.8
+
+  heading_lookahead: 0.325
+  heading_scoring: false
+  oscillation_reset_dist: 0.05
+  occdist_scale: 0.05
+  publish_cost_grid_pc: false
+
+  use_sim_time: false
+  #sim_time: 2.0
+  #sim_granularity: 0.05 # was 0.01
+  #angular_sim_granularity: 0.05 # was 0.01
+
+  vx_samples: 6
+  vtheta_samples: 20
+  dwa: false
+
+  TebLocalPlannerROS:
+    footprint_model: # types: "point", "circular", "line", "two_circles", "polygon"
+      type: "circular"
+      radius: 0.2 # for type "circular"
+ 

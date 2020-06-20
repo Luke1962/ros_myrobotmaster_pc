@@ -1,0 +1,6 @@
+<launch>
+<!--  face rec -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_facerecognition.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_imgrepublish_robot_usbcam.launch"/>
+
+</launch>

@@ -1,0 +1,21 @@
+<launch>
+
+  <master auto="start"/>
+
+
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base_teb" output="screen">
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/costmap_common_params.yaml" command="load" ns="local_costmap" />
+
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/global_costmap_params.yaml" command="load" />
+    
+    <rosparam file="$(find myrobotmaster)/parameters/move_base/base_local_planner_teb_params.yaml" command="load" />
+
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+  
+  </node>
+</launch>
+
+

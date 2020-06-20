@@ -1,0 +1,75 @@
+mqtt:
+  client:
+    protocol: 4      # MQTTv311
+  connection:
+    host: 192.168.0.50
+    port: 1883
+    keepalive: 60
+  private_path: device/001
+
+#json is default
+#serializer: msgpack:dumps
+#deserializer: msgpack:loads
+bridge:
+  # chatter
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:String
+    topic_from: /chatter
+    topic_to: hello/world  
+  # batt
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float64
+    topic_from: /battery_volt
+    topic_to: battery/volt
+
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float64
+    topic_from: /battery_ampere
+    topic_to: battery/ampere
+
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float64
+    topic_from: /battery_watt
+    topic_to: battery/watt
+
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float64
+    topic_from: /battery_watthours
+    topic_to: battery/wh
+
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float64
+    topic_from: /battery_charge
+    topic_to: battery/charge
+
+    #chatter
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:String
+    topic_from: /chatter
+    topic_to: chatter
+
+    #pir
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /pir
+    topic_to: pir
+
+    #ischarging flag
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /battery_ischarging
+    topic_to: battery_ischarging
+
+    #bumper
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Int32
+    topic_from: /bump
+    topic_to: bump
+
+
+# FROM MQTT --------------------------------
+    #followme
+#  - factory: mqtt_bridge.bridge:MqttToRosBridge
+#    msg_type: std_msgs.msg:Int32
+#    topic_from: followme
+#    topic_to: /followme

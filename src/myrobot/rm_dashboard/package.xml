@@ -1,0 +1,26 @@
+<package>
+  <name>rm_dashboard</name>
+  <version>0.0.0</version>
+  <description>
+    RQT-based  dashboard    
+  </description>
+  <maintainer email="lcesarini1962@gmail.com">Luca Cesarini</maintainer>
+  <license>BSD</license>
+ 
+  <author>L.C.</author>
+ 
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>rqt_robot_dashboard</build_depend>
+  <!-- <build_depend>kobuki_msgs</build_depend> -->
+
+  <run_depend>rospy</run_depend>
+  <run_depend>rqt_robot_dashboard</run_depend>
+  <!-- <run_depend>kobuki_msgs</run_depend> -->
+  
+  <export>
+    <rqt_gui plugin="${prefix}/plugins/plugin.xml"/>
+  </export>
+</package>

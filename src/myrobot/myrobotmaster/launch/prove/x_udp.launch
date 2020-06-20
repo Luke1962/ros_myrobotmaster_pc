@@ -1,0 +1,26 @@
+<launch>
+
+<!-- Connessione con eventuali nodi basati su ESP32 o NODEMCU -->
+
+<!-- se non va chiamato dal launch,  eseguilo manualmente con : rosrun rosserial_python nodes/message_info_service.py-->
+	<node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+
+
+<!--WIFI   -->
+	<!--Attenzione: serial_node.py non supporta connessioni multiple. usare al suo posto "rosrun rosserial_server socket_node"-->
+	<!--<node ns="robot"  name="socket_node_wifi" pkg="rosserial_server" type="socket_node" output="screen">-->
+<node ns="robot"  name="socket_node_wifi" pkg="rosserial_server" type="udp_socket_node" output="screen"> </node>
+		<param name="port" value="udp" />	
+	 
+<!--
+samples	scan sp	return speed	Rate ottenuto	bytes/s
+	50		3.0		7.0		OK		0.46				326
+	60  	3.5		2.7  	OK
+	60		4.5		3.0  late: tra 51 e 58  su 60
+-->	 
+
+
+<!--
+	<include file="/home/luca/ros_catkin_ws/src/myrobotmaster/launch/myrobotmaster.launch"/>
+-->
+</launch>

@@ -1,0 +1,22 @@
+<launch>
+	<!--
+
+	-->
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster__root_nomovebase.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_amcl_fake.launch"/>
+
+
+	<!--<include file="$(find myrobotmaster)/launch/myrobotmaster_detect_dnn.launch"/>-->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_detect_edgetpu.launch"/>
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_actionserver.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_rm_follower.launch"/>
+
+
+
+<!-- visualizzazione
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_rviz.launch"/>
+-->
+ 
+</launch>

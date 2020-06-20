@@ -1,0 +1,25 @@
+<launch>
+ 
+  <!--Converte immagine colori in scala di grigi
+  sottoscrive /camera/image_raw
+  pubblica  /image_converter/output_image-->
+ 	  <remap from="/camera/image_raw" to="/usb_cam/image_raw"/> 
+    <node pkg="image_converter" type="to_mono8" name="rgb2mono" output="screen"/>
+ 
+ 
+ 
+    <node pkg="svo_ros" type="vo" name="svo" clear_params="true" output="screen">
+    
+        <!-- Camera topic to subscribe to -->
+        <!--<param name="cam_topic" value="/robot/raspicamcam/image_raw" type="str" />-->
+        <param name="cam_topic" value="/image_converter/output_image" type="str" />
+       
+        <!-- Camera calibration file -->
+        <!--<rosparam file="$(find svo_ros)/param/camera_atan.yaml" />-->
+        <rosparam file="$(find myrobotmaster)/parameters/camera_pcwebcam.yaml" />
+        <!-- Default parameter settings: choose between vo_fast and vo_accurate -->
+        <rosparam file="$(find svo_ros)/param/vo_fast.yaml" />
+
+    </node>
+        
+</launch>

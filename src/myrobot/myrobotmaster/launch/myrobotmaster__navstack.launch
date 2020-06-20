@@ -1,0 +1,23 @@
+<launch>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_urdf.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_tf.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_map.launch"/>    
+
+	<!--
+   	<include file="$(find myrobotmaster)/launch/myrobotmaster_amcl_fake.launch"/>
+  -->
+   <include file="$(find myrobotmaster)/launch/myrobotmaster_amcl.launch"/>
+
+ 	<include file="$(find myrobotmaster)/launch/myrobotmaster_move_teb.launch"/>
+ 
+	<!--
+   <include file="$(find myrobotmaster)/launch/myrobotmaster_move_eband.launch"/>
+   <include file="$(find myrobotmaster)/launch/myrobotmaster_move_navfn.launch"/>
+    
+    -->
+
+
+
+</launch>
+
+

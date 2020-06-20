@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="robot_description">
+<link name="base_link">
+</link>
+
+
+<link name="bottom_link">
+   <visual>
+    <geometry>
+     <cylinder length="0.01" radius="0.2"/>
+    </geometry>
+    <material name="alluminio">
+      <color rgba="0.6 0.6 0.8 1"/>
+    </material>
+   </visual>
+ </link>
+
+ <joint name="bottom_joint" type="fixed"> 
+    <parent link="base_link"/> 
+    <child link="bottom_link"/> 
+    <origin rpy="0 0 0" xyz="0 0 0.09"/> 
+ </joint>
+
+
+<link name="top_link">
+   <visual>
+    <geometry>
+     <cylinder length="0.01" radius="0.2"/>
+    </geometry>
+
+    <material name="plexiglass">
+      <color rgba="0.5 0 0 0.5"/>
+    </material>
+   </visual>
+ </link>
+  <joint name="top_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="top_link"/> 
+    <origin rpy="0 0 0" xyz="0 0 0.3"/> 
+  </joint>
+
+
+
+  
+
+  <link name="right_wheel"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.014" radius="0.059"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0 0 0 1"/> 
+      </material> 
+    </visual> 
+  </link>
+ <joint name="right_wheel_joint" type="continuous"> 
+    <axis xyz="0 0 1"/> 
+    <parent link="base_link"/> 
+    <child link="right_wheel"/> 
+    <origin rpy="1.5708 0 0" xyz="0 -0.2 0.059"/> 
+  </joint>
+
+ <link name="left_wheel"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.014" radius="0.059"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0 0 0 1"/> 
+      </material> 
+    </visual> 
+  </link>
+  <joint name="left_wheel_joint" type="continuous"> 
+    <axis xyz="0 0 1"/> 
+    <parent link="base_link"/> 
+    <child link="left_wheel"/> 
+    <origin rpy="-1.5708 0 0" xyz="0 0.2 0.059"/> 
+  </joint>
+
+  <link name="caster_wheel"> 
+    <visual> 
+      <geometry> 
+        <sphere radius="0.03"/> 
+      </geometry> 
+      <material name="black"> 
+        <color rgba="0.4 0.4 0.4 0.7"/> 
+      </material> 
+    </visual> 
+  </link>
+  <joint name="caster_wheel_joint" type="fixed"> 
+    <parent link="base_link"/> 
+    <child link="caster_wheel"/> 
+    <origin rpy="0 0 0" xyz="-0.15 0 0.03"/> 
+  </joint>
+  <link name="laser"> 
+    <visual> 
+      <geometry> 
+        <sphere radius="0.02"/> 
+      </geometry> 
+      <material name="green">       
+	<color rgba="0 1 0 1"/> 
+      </material> 
+    </visual> 
+  </link>
+  <joint name="laser_joint" type="fixed"> 
+    <parent link="base_link"/> 
+    <child link="laser_link"/> 
+    <origin rpy="0 0 0" xyz="0.19 0 0.06"/> 
+  </joint>
+
+  <link name="ultrasound"> 
+    <visual> 
+      <geometry> 
+        <cylinder length="0.02" radius="0.02"/>  
+      </geometry> 
+      <material name="green">       
+	<color rgba="1 0 1 1"/> 
+      </material> 
+    </visual> 
+  </link>
+  <joint name="ultrasound" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="ultrasound"/> 
+    <origin rpy="0 0 0" xyz="0 0 0"/> 
+  </joint>
+
+
+  <link name="battery"> 
+    <visual>
+	<geometry>
+        	<box size="0.09 0.14 0.06"/>
+      	</geometry>
+      	<material name="black">       
+		<color rgba="0.5 0.5 0.5 0.3"/> 
+      	</material> 
+    </visual> 
+  </link>
+  <joint name="battery_joint" type="fixed"> 
+    <parent link="bottom_link"/> 
+    <child link="battery"/> 
+    <origin rpy="0 0 0" xyz="-0.12 0 0.03"/> 
+  </joint>
+</robot>

@@ -1,0 +1,94 @@
+<launch>
+	<!--commentare quando il robot deve muoversi in quanto è il nodo odom_node a pubblicarlo
+		<node pkg="tf2_ros" type="static_transform_publisher" name="tf_dummy_base_link_broadcaster" args="0 0 0 0 0 0 1  /odom /base_link"/>	
+	-->
+	
+<!--  modello urdf -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_urdf.launch"/>
+
+<!--encoders2odom  -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_odom.launch"/>
+
+	
+<!-- tf fisse -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_tf.launch"/>
+
+
+<!-- map server -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_map.launch"/>
+
+
+<!-- conversione formato raspicam in compressed	-->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_imgrepublish.launch"/>
+
+
+<!-- connessione con nodered-->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_mqtt_bridge.launch"/>
+
+
+<!--amcl -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_amcl_fake.launch"/>
+
+
+
+<!-- visualizzazione-->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_rviz.launch"/>
+
+<!-- JOYSTICK se non funziona prova a cabiare porta 0 <> 1  -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_joy.launch"/>
+	
+
+<!-- pianificazione movimento
+ 	<remap from="/robot/odom" to="/odom"/> 
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_move.launch"/>
+ -->
+
+<!--======================  nodi commentati  ====================== -->
+<!---->
+<!-- initialpose ***SPOSTATA SU PI3***  -->
+
+	<!-- Robot pose 
+		<arg name="x" default="1.1"/>
+		<arg name="y" default="2.2"/>
+		<arg name="z" default="0"/>
+		<arg name="roll" default="0"/>
+		<arg name="pitch" default="0"/>
+		<arg name="yaw" default="0,0"/>
+
+		<node pkg="rostopic" type="rostopic" name="publish_initialpose" args="pub /initialpose geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: map}, pose: {position: {x: $(arg x), y: $(arg y), z: 0.0}, orientation: {w: 1.0 , x: 0.0, y: 0.0, z: $(arg yaw)}}}'" />
+		<node pkg="rostopic" 
+			type="rostopic" 
+			name="publish_initialpose" 
+			args="pub /initialpose geometry_msgs/PoseWithCovariance '{header: {stamp: now, frame_id: map},	pose: {position: {x: $(arg x), y: $(arg y), z: 0.0}, orientation: {w: 1.0 , x: 0.0, y: 0.0, z: $(arg yaw)}}}'" />
+
+	-->
+
+
+
+
+
+
+<!-- JOYSTICK ***commentato perchè per ora non funziona***
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_joy.launch"/>
+	-->
+
+
+
+ 
+<!-- lancia rviz 	-->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d /home/luca/ros_catkin_ws/src/myrobotmaster/rviz/myrvizconfig.rviz" />
+
+
+<!--  amcl 
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_amcl.launch"/>
+-->
+  
+<!--  ekf
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_efk.launch"/>
+
+	 
+ <node name="rqt" pkg="rqt" type="rqt" />
+ -->
+
+ 
+</launch>

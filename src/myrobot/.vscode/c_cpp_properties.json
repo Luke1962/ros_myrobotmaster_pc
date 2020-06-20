@@ -1,0 +1,58 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/luca/ros/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/luca/ros/src/actionlib/include",
+                "/home/luca/ros/src/image_common/camera_calibration_parsers/include",
+                "/home/luca/ros/src/image_common/camera_info_manager/include",
+                "/home/luca/ros/src/hector_slam/hector_geotiff/include",
+                "/home/luca/ros/src/hector_slam/hector_map_tools/include",
+                "/home/luca/ros/src/hector_slam/hector_mapping/include",
+                "/home/luca/ros/src/hector_slam/hector_marker_drawing/include",
+                "/home/luca/ros/src/image_common/image_transport/include",
+                "/home/luca/ros/src/imu_tools/imu_complementary_filter/include",
+                "/home/luca/ros/src/imu_tools/imu_filter_madgwick/include",
+                "/home/luca/ros/src/libuvc_ros/libuvc_camera/include",
+                "/home/luca/ros/src/move_basic/include",
+                "/home/luca/ros/src/myrobot/myrobotmaster/include",
+                "/home/luca/ros/src/open_karto/include",
+                "/home/luca/ros/src/image_common/polled_camera/include",
+                "/home/luca/ros/src/myrobot/rm_speech/include",
+                "/home/luca/ros/src/ros_wheel_speeds/include",
+                "/home/luca/ros/src/rosserial/rosserial_server/include",
+                "/home/luca/ros/src/rosserial/rosserial_test/include",
+                "/home/luca/ros/src/rpg_svo/svo/include",
+                "/home/luca/ros/src/rpg_svo/svo_ros/include",
+                "/home/luca/ros/src/teleop_twist_joy/include",
+                "/home/luca/ros/src/turtlebot_apps/turtlebot_actions/include",
+                "/home/luca/ros/src/twist_mux/include",
+                "/home/luca/ros/src/uvc_cam/include",
+                "/home/luca/ros/src/xv_11_laser_driver/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_ar_marker_tracking/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_ar_pair_tracking/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_cmd_vel_mux/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_controllers/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_diff_drive_pose_controller/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_keyop/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_math_toolkit/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_navi_toolkit/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_navigator/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_safety_controller/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_velocity_smoother/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_virtual_sensor/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_waypoint_provider/include",
+                "/home/luca/ros/src/yujin_ocs/yocs_waypoints_navi/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

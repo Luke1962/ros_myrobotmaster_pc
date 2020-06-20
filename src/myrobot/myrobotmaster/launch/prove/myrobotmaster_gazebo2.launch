@@ -1,0 +1,15 @@
+<launch>
+	
+<!--
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_map.launch"/>
+-->
+
+<!-- 
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_gmapping.launch"/>
+ -->
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_move.launch"/>
+ 
+
+
+</launch>

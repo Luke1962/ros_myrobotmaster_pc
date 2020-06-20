@@ -1,0 +1,67 @@
+<launch>
+	<!--
+		file launch comune ai vari scenari
+	-->
+	
+<!--  modello urdf -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_urdf.launch"/>
+
+
+	
+<!-- tf fisse -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_tf.launch"/>
+
+
+<!-- map server -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_map.launch"/>
+
+
+<!-- pianificazione movimento-->
+ 	<remap from="/robot/odom" to="/odom"/> 
+
+ <!-- img republish per Android e altri dispositivi -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_imgrepublish_robot_usbcam.launch"/>
+
+
+ <!-- Dialogflow -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_dialogflow.launch"/>
+
+
+
+<!-- pianificazione movimento
+
+-->
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_move_teb.launch"/>
+
+
+
+<!--	<include file="$(find myrobotmaster)/launch/myrobotmaster_move.launch"/>
+--> 
+<!--======================  nodi commentati  ====================== -->
+<!--encoders2odom  
+    spostato su Pi3 in base_controller.py (arduino_bridge)
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_odom.launch"/>
+-->
+<!-- JOYSTICK se non funziona prova a cabiare porta 0 <> 1 
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_joy.launch"/>
+
+ -->
+
+	
+ 
+
+<!-- connessione con nodered
+  tolto perchè non riesco a far andare mqtt_bridge (20/10/2019)
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_mqtt_bridge.launch"/>
+-->
+  
+<!--  ekf
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_efk.launch"/>
+
+	 
+ <node name="rqt" pkg="rqt" type="rqt" />
+ -->
+
+ 
+</launch>

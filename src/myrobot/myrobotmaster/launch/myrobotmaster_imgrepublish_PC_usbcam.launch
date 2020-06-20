@@ -1,0 +1,10 @@
+<launch>
+
+	<!--<node name="republish" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/raspicam/image_raw compressed out:=/raspicam" />-->
+<!--	<node name="republish" type="republish" pkg="image_transport" output="screen" args="raw  in:=/robot/raspicam/image_raw compressed out:=usb_cam/image_raw" />
+-->	
+<node name="republishPCusbcam" type="republish" pkg="image_transport" output="screen" args="raw  in:=/usb_cam/image_raw raw out:=/camera/image_raw" />
+
+	<!--  <remap from="" to=""/> -->
+</launch>
+

@@ -1,0 +1,19 @@
+<!-- Run the dnn_detect node -->
+<launch>
+  <!-- namespace for camera input -->
+  <!--<arg name="camera" default="/camera"/>-->
+  <arg name="camera" default="/usb_cam"/>
+  <arg name="image" default="image_raw"/>
+  <arg name="transport" default="compressed"/>
+
+  <node pkg="rm_detect" name="rm_detect"
+    type="rm_detect" output="screen" respawn="false">
+    <param name="image_transport" value="$(arg transport)"/>
+    <param name="publish_images" value="true" />
+    <param name="data_dir" value="$(find dnn_detect)/model"/>
+    <param name="width2distance" value="220"/>
+    <remap from="/camera/compressed" 
+        to="$(arg camera)/$(arg image)/$(arg transport)"/>
+    <remap from="/camera_info" to="$(arg camera)/camera_info"/>
+  </node>
+</launch>

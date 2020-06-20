@@ -1,0 +1,14 @@
+<launch>
+
+<!--   
+  <master auto="start"/>
+ <node     name="map_server" pkg="map_server" type="map_server" args="$(find myrobotmaster)/map/gmap2.pgm.yaml"/>
+-->    
+    <node     name="map_server" pkg="map_server" type="map_server" args="$(find myrobotmaster)/map/chiavari.yaml"/>
+
+
+  <!--<node     name="map_server" pkg="map_server" type="map_server" args="$(find myrobotmaster)/map/mymap90.yaml"/>-->
+
+<!--	 <remap from="/map_broadcaster" to="/map_reference"/>-->
+</launch>
+

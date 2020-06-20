@@ -1,0 +1,148 @@
+<launch>
+  <!--
+<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+  <param name="output_frame" value="odom_combined"/>
+  <param name="base_footprint_frame" value="base_link"/>
+  <param name="freq" value="5.0"/>
+  <param name="sensor_timeout" value="1.0"/>  
+  <param name="odom_used" value="true"/>
+  <param name="imu_used" value="true"/>
+  <param name="vo_used" value="false"/>
+
+  <remap from="pr2_base_odometry/odom" to="odom"/>
+</node>
+-->
+
+
+  <!--ekf_localization_node tutorial : http://docs.ros.org/kinetic/api/robot_localization/html/state_estimation_nodes.html#ekf-localization-node   --> 
+<node   ns="rm"    pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true">
+	
+  <!-- ======== STANDARD PARAMETERS ======== <remap from="/odom" to="/pr2_base_odometry/odom"/>-->
+
+  <param name="output_frame" value="odom"/>
+  <param name="base_footprint_frame" value="base_link"/>
+  <param name="freq" value="5.0"/>
+  <param name="sensor_timeout" value="1.0"/>  
+  
+  <param name="odom_used" value="true"/>
+  <param name="imu_used" value="true"/>
+
+  <param name="vo_used" value="false"/>  <!--3D pose (used by Visual Odometry-->
+
+
+  <remap from="pr2_base_odometry/odom" to="odom"/>
+  
+  
+  <param name="frequency" value="5"/>
+
+
+  <param name="sensor_timeout" value="0.06"/>
+
+
+  <param name="two_d_mode" value="true"/>
+
+
+
+  <!-- Defaults to "odom" if unspecified -->
+  <param name="odom_frame" value="robot/odom"/>
+
+  <!-- Defaults to "base_link" if unspecified -->
+  <param name="base_link_frame" value="base_link"/>
+
+  <!-- Defaults to the value of "odom_frame" if unspecified -->
+  <param name="world_frame" value="map"/>
+
+  <param name="transform_time_offset" value="0.0"/>
+
+
+<param name="twist0" value="/cmd_vel"/>
+
+<param name="imu0" value="/imu"/>
+<param name="odom0" value="/odom"/>
+
+
+
+<rosparam param="odom0_config">[true,  true, false,
+                                false, false, false,
+                                true, false, false,
+                                false, false, true,
+                                true, false, false]
+</rosparam>
+
+<rosparam param="twist0_config">[false,  false, false,
+                                  false,  false, true,
+                                  false,  true, false,
+                                  false,  false, true,
+                                  true,  false, false]
+</rosparam>
+ <!--
+ Matrice di utilizzo
+ x ,y, z
+ r, p, y
+ vel x ,y, z
+ twist x, y, z
+ acc x, y, z
+ 
+   -->
+
+<rosparam param="imu0_config">[false, false, false,
+                               true, true, true,
+                               false, false, false,
+                               false, false, true,
+                               true, false, false]</rosparam> 
+
+  <param name="print_diagnostics" value="true"/>
+
+
+  <param name="twist0_queue_size" value="2"/>
+
+
+  <param name="debug"           value="true"/>
+
+  <param name="debug_out_file"  value="debug_ekf_localization.txt"/>
+
+
+  <rosparam param="process_noise_covariance">[0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0.03, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0.03, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0.08, 0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.01, 0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
+</rosparam>
+
+<rosparam param="initial_estimate_covariance">[1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    1e-9, 0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    1e-9, 0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    1e-9, 0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    1e-9, 0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    1e-9, 0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    1e-9,  0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1e-9,  0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0.042,  0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1e-9, 0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1e-9, 0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1e-9]
+</rosparam>
+
+<rosparam param="initial_state">[0.0,  0.0,  0.0,
+                                 0.0,  0.0,  0.0,
+                                 0.0,  0.0,  0.0,
+                                 0.0,  0.0,  0.0,
+                                 0.0,  0.0,  0.0]
+</rosparam>
+
+</node>
+</launch>
+

@@ -1,0 +1,7 @@
+<launch>
+ 
+    <node name="mic_client" pkg="dialogflow_ros" type="mic_client.py" output="screen"/>
+   
+
+
+</launch>

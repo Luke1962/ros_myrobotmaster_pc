@@ -1,0 +1,6 @@
+<launch>
+
+<!-- lancia rviz	-->
+<node   ns="rm"    name="rviz" pkg="rviz" type="rviz" args="-d /home/luca/ros/src/myrobot/myrobotmaster/rviz/myrvizconfig.rviz" />
+
+</launch>

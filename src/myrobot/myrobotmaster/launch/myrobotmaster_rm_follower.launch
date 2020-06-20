@@ -1,0 +1,28 @@
+<!-- Run the dnn_detect node -->
+<launch>
+    <node pkg="rm_follower" name="rm_follower"   type="rm_follower" output="screen" respawn="false">
+
+
+        <param name="min_confidence"                value="0.5"/>   
+
+        <param name="rate"                          value="5"/>   
+        <param name="cmdvel_topic"                  value="/cmd_vel" />
+		<param name="image_topic"					value="/robot/raspicam"/>
+        <param name="width2distance"                value="0.007843f"/>   
+        <param name="trackRotationSpeed"            value="0.8"/>
+        <param name="searchRotationSpeed"           value="0.5"/>
+        <param name="trackLinerarSpeed"             value="0.3"/>  <!--velocità di avvicinamento-->
+        <param name="debug_onlyRotation"            value="true"/>  <!--se true non avanza ma segue solo ruotando-->
+        <param name="thresholdCenter"               value="15"/> <!-- distanza massima in pixel dal centro immagine per non ruotare-->
+        <param name="tooFarFactor"                  value="0.5"/>
+        <param name="tooNearFactor"                 value="0.65"/> <!--fattore rispetto alla dimensione orizzontale dell'immagine-->
+        <param name="ImageW"                        value="320"/>   
+        <param name="ImageH"                        value="240"/>   
+        <param name="cameraHFOV"                    value="1,570796327"/>   <!--angolo apertura raspicam 90° -->
+ 
+        <param name="lastDetection2search_sec"      value="4" />
+        <param name="lastdetection2stop_sec"        value="25" />
+        <remap from="/pir" to="/arduino/sensor/pir" />
+    </node>
+
+</launch>

@@ -1,0 +1,19 @@
+<launch>
+	<!--
+
+	-->
+
+<!--  modello urdf -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster__navstack.launch"/>
+
+<!--creazione mappa -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_gmapping.launch"/>
+
+
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_explorer.launch"/>
+
+
+ 	<!-- questa configurazione fa vedere i confini di explorer-->
+     <include file="$(find myrobotmaster)/launch/myrobotmaster_rviz.launch"/>
+
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+  <!-- 
+  lancia https://127.0.0.1/speech_commands/speechcommands.html 
+  tramite shell myrobotmaster/scripts/runNodejsServer.sh
+   -->
+  
+
+  <node pkg="myrobotmaster" type="runNodejsServer.sh" name="runNodejsServer.sh">
+  </node>
+
+</launch>

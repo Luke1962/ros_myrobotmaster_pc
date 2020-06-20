@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/luca/ros/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/luca/ros/src/image_common/camera_calibration_parsers/include",
+                "/home/luca/ros/src/image_common/camera_info_manager/include",
+                "/home/luca/ros/src/gazebo_ros_pkgs/gazebo_plugins/include",
+                "/home/luca/ros/src/gazebo_ros_pkgs/gazebo_ros/include",
+                "/home/luca/ros/src/gazebo_ros_pkgs/gazebo_ros_control/include",
+                "/home/luca/ros/src/hector_slam/hector_geotiff/include",
+                "/home/luca/ros/src/hector_slam/hector_map_tools/include",
+                "/home/luca/ros/src/hector_slam/hector_mapping/include",
+                "/home/luca/ros/src/hector_slam/hector_marker_drawing/include",
+                "/home/luca/ros/src/image_common/image_transport/include",
+                "/home/luca/ros/src/imu_tools/imu_complementary_filter/include",
+                "/home/luca/ros/src/imu_tools/imu_filter_madgwick/include",
+                "/home/luca/ros/src/move_basic/include",
+                "/home/luca/ros/src/image_common/polled_camera/include",
+                "/home/luca/ros/src/rm_head_tracking/include",
+                "/home/luca/ros/src/rosserial/rosserial_server/include",
+                "/home/luca/ros/src/rosserial/rosserial_test/include",
+                "/home/luca/ros/src/turtlebot_apps/turtlebot_actions/include",
+                "/home/luca/ros/src/xv_11_laser_driver/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

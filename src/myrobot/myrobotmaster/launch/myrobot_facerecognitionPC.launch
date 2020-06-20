@@ -1,0 +1,13 @@
+<launch>
+<!--  face rec -->
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_facerecognition.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_imgrepublish_PC_usbcam.launch"/>
+	<include file="$(find myrobotmaster)/launch/myrobotmaster_webcamPC.launch"/>
+    
+	<!--commentare per i test con la webcam del PC ("/usb_cam/image_raw/")
+<remap from="/usb_cam/image_raw/" to="/robot/usb_cam/image_raw/compressed" />-->
+
+    <!--NON commentare  per i test con la webcam del PC
+<remap from="/usb_cam/image_raw/" to="/camera/image_raw/compressed" />
+     -->
+</launch>
